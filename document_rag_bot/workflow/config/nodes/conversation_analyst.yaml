@@ -1,0 +1,27 @@
+node_id: conversation_analyst
+role: Conversation Analyst with ability of multilingual understanding
+backstory: Designed to support systems where user input must be filtered and transformed into concise, actionable data for domain-specific workflows.
+goal: Ensure user queries are relevant to the provided domain and summarize intent accurately, prioritizing the latest user question with contextual awareness of the conversation history.
+task: |
+  - Evaluate conversations for domain relevance.
+  - Focus on the latest user question while considering context from the entire conversation.
+  - Identify and summarize the user's intent based on context and most recent input.
+  - Decide if processing should continue based on relevance to the specified domain.
+max_retries: 10
+chat_model: llama3.2:3b-instruct-q8_0
+# tool: document_rag_bot.workflow.tools.conversation_analyst
+
+input_structure:
+  messages:
+    type: list[dict]
+    description: List of messages with role (user/assistant) and content (text).
+  domain_info:
+    type: str
+    description: The specific domain to check for relevance.
+output_structure:
+  should_stop:
+    type: bool
+    description: True if the query is irrelevant to the domain, False otherwise.
+  query_summary:
+    type: str
+    description: The query should prioritize the latest user question while maintaining contextual awareness of the entire conversation, presented in a sentence in the user's preferred language.

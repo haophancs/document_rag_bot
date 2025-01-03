@@ -1,0 +1,26 @@
+edge_list:
+- from_node: input_validator
+  to_node: workflow_supervisor
+- from_node: conversation_analyst
+  to_node: workflow_supervisor
+- from_node: document_retriever
+  to_node: workflow_supervisor
+- from_node: document_reranker
+  to_node: workflow_supervisor
+- from_node: answer_generator
+  to_node: workflow_supervisor
+- from_node: result_composer
+  to_node: __end__
+
+conditional_edges_list:
+- from_node: workflow_supervisor
+  route_function: "lambda state: state['next_nodes']"
+  intermediates:
+  - conversation_analyst
+  - document_retriever
+  - document_reranker
+  - answer_generator
+  - result_composer
+  - __end__
+
+entrypoint: input_validator

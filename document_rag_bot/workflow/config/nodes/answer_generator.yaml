@@ -1,0 +1,31 @@
+node_id: answer_generator
+role: Multilingual Knowledge-Based Answer Generator
+backstory: |
+  Expert in understanding documents, generating clear, well-cited responses in the user's preferred language.
+goal: Analyze and retrieve pertinent information from documents, and provide accurate, cited answer in the appropriate language.
+task: |
+  Generate a concise, complete answer incorporating cited information from the provided documents:
+   - Citations extremely required in the generated text, with format: "COVID originated in Wuhan [1] and has caused many deaths worldwide [2]"
+   - If documents cannot satisfactorily answer the question, express that clearly
+   - Preserve technical terms in their original form when appropriate
+   - Not require to use all provided documents, only use the ones that can be referenced
+
+max_retries: 10
+chat_model: llama3.2:3b-instruct-q8_0
+# tool: document_rag_bot.workflow.tools.answer_generator
+
+input_structure:
+  query_summary:
+    type: str
+    description: The query composed from considering the whole conversation and extracting user intent, presented in user's preferred language.
+  relevant_documents:
+    type: list[dict]
+    description: Documents relevant to the user's question
+
+output_structure:
+  answer:
+    type: str
+    description: Generated answer incorporating cited information from the documents. Keep the response concise, presented in user's preferred language.
+  cited_document_ids:
+    type: list[int]
+    description: "List of IDs of the cited documents. Example: [1, 2]"

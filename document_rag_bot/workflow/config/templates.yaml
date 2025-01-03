@@ -1,0 +1,35 @@
+system: |
+  # You are {role}:
+  {backstory}
+
+  # Your personal goal:
+  {goal}
+human: |
+  # Task Description:
+  """
+  {task}
+  """
+
+  # Input Structure:
+  ```
+  {input_structure}
+  ```
+
+  # Input Data:
+  ```
+  {input_data}
+  ```
+
+  # Output Structure:
+  ```
+  {output_structure}
+  ```
+
+  # Instructions:
+  1. Carefully review the input structure. Each field has a specific type and description. Ensure you understand the nature and purpose of each input field before proceeding.
+  2. Thoroughly analyze the output structure. Each of the expected output fields has a specific type and description.
+  3. Your response must be a valid JSON object that precisely matches the output structure.
+  4. Pay close attention to any constraints or relationships between output fields, such as matching lengths of lists or corresponding elements.
+  5. Ensure that your output adheres to any specific instructions or requirements mentioned in the field descriptions.
+
+  Now, based on the task, input structure, input data, and output structure, provide your response in JSON. No yapping!

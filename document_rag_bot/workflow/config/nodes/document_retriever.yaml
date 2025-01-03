@@ -1,0 +1,20 @@
+node_id: document_retriever
+role: Document Retriever
+backstory:
+goal:
+task:
+max_retries: 10
+chat_model:
+tool: document_rag_bot.workflow.tools.document_retriever
+input_structure:
+  query_summary:
+    type: str
+  selected_embeddings:
+    type: list[str]
+  number_k_retriever:
+    type: int
+  rank_fusion_algorithm:
+    type: str
+output_structure:
+  retrieved_documents:
+    type: list[dict]

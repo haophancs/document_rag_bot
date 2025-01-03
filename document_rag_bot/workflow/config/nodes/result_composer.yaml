@@ -1,0 +1,12 @@
+node_id: result_composer
+role: Result Composer
+backstory:
+goal:
+task:
+max_retries: 0
+chat_model:
+tool: document_rag_bot.workflow.tools.result_composer
+input_structure:
+output_structure:
+  result:
+    type: dict

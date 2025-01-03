@@ -1,0 +1,12 @@
+node_id: workflow_supervisor
+role: Workflow Supervisor
+backstory:
+goal:
+task:
+chat_model:
+tool: document_rag_bot.workflow.tools.workflow_supervisor
+max_retries: 0
+input_structure:
+output_structure:
+  next_nodes:
+    type: list[str]

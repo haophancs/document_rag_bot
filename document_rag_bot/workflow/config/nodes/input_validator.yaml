@@ -1,0 +1,14 @@
+node_id: input_validator
+role: Input Validator
+backstory:
+goal:
+task:
+max_retries: 0
+chat_model:
+tool: document_rag_bot.workflow.tools.input_validator
+input_structure:
+  messages:
+    type: list[dict]
+  ask_follow_up:
+    type: bool
+output_structure:

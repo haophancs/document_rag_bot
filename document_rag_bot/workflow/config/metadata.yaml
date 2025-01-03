@@ -1,0 +1,12 @@
+selected_embeddings:
+- bge-m3
+- tfidf
+
+rank_fusion_algorithm: rrf
+disable_reranker: False
+
+messages_limit: 5
+number_k_retriever: 10
+number_k_reranker: 3
+
+domain_info: Everything about COVID-19, vaccines, symptoms, or guidelines, etc.

@@ -1,0 +1,22 @@
+node_id: document_reranker
+role: Document Reranker
+backstory:
+goal:
+task:
+max_retries: 10
+chat_model:
+tool: document_rag_bot.workflow.tools.document_reranker
+input_structure:
+  query_summary:
+    type: str
+  retrieved_documents:
+    type: list[dict]
+  number_k_reranker:
+    type: int
+  disable_reranker:
+    type: bool
+output_structure:
+  reranked_documents:
+    type: list[dict]
+  relevant_documents:
+    type: list[dict]

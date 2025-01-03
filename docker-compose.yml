@@ -1,0 +1,39 @@
+services:
+  api: &main_app
+    hostname: ${DOCUMENT_RAG_BOT_API_HOST}
+    ports:
+    - "${DOCUMENT_RAG_BOT_API_PORT}:${DOCUMENT_RAG_BOT_API_PORT}"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: document_rag_bot:${DOCUMENT_RAG_BOT_VERSION:-latest}
+    restart: always
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://${DOCUMENT_RAG_BOT_API_HOST}:${DOCUMENT_RAG_BOT_API_PORT}/api/health').raise_for_status()"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    depends_on:
+    - qdrant
+    env_file:
+    - .env
+    networks:
+    - default
+
+  streamlit:
+    <<: *main_app
+    hostname: ${DOCUMENT_RAG_BOT_STREAMLIT_HOST}
+    ports:
+    - "${DOCUMENT_RAG_BOT_STREAMLIT_PORT}:${DOCUMENT_RAG_BOT_STREAMLIT_PORT}"
+    depends_on:
+      api:
+        condition: service_healthy
+    command:
+    - poetry
+    - run
+    - streamlit
+    - run
+    - document_rag_bot/web/frontend.py
+    - --server.address
+    - ${DOCUMENT_RAG_BOT_STREAMLIT_HOST}
