@@ -1,0 +1,15 @@
+app_title: "COVID-19 Q&A Chatbot"
+input_placeholder: "Ask me anything about COVID-19, vaccines, symptoms, or guidelines."
+thinking_message: "Let me find the best answer for you..."
+clear_history_button: "Clear Chat History"
+sidebar_title: "Chat Information"
+sidebar_info: |
+  Messages in conversation: {messages_count}
+
+  This COVID-19 chatbot provides:
+  1. Answers based on a trusted database of COVID-19 knowledge
+  2. Information about vaccines and their effectiveness
+  3. Guidelines for preventing infection and staying safe
+  4. Responses to commonly asked questions about COVID-19
+
+  Note: The information provided is based on a precompiled database and does not include real-time updates. For the latest developments, consult official health resources.
